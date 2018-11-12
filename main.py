@@ -15,20 +15,20 @@ def delete(id):
     Delete the item in the database
     """
     qry = db_session.query(Album).filter(
-        Album.id==id)
-    album = qry.first()
+        Bin.id==id)
+    bin = qry.first()
     delete = Results(qry)
 
-    if album:
-        form = AlbumForm(formdata=request.form, obj=album)
+    if bin:
+        form = AlbumForm(formdata=request.form, obj=bin)
         if request.method == 'POST' and form.validate():
             # delete the item from the databse
-            db_session.delete(album)
+            db_session.delete(bin)
             db_session.commit()
 
-            flash('Album deleted successfully.')
+            flash('Tool listing deleted successfully.')
             return redirect('/')
-        return render_template('delete_album.html', table=delete)
+        return render_template('delete_tool.html', table=delete)
     else:
         return 'Error deleting #{id}'.format(id=id)
 
@@ -36,13 +36,13 @@ def delete(id):
 def edit(id):
     qry = db_session.query(Bin).filter(
         Bin.id==id)
-    tool = qry.first()
+    bin = qry.first()
 
     if bin:
-        form = ToolForm(formdata=request.form, obj=tool)
+        form = ToolForm(formdata=request.form, obj=bin)
         if request.method == 'POST' and form.validate():
             # save edit
-            save_changes(tool, form)
+            save_changes(bin, form)
             flash('Tool listing updated successfully.')
             return redirect('/')
         return render_template('edit_tool.html', form=form)
