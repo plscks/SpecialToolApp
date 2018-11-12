@@ -18,7 +18,8 @@ def delete(id):
         Bin.id==id)
     bin = qry.first()
     delete = Delete(qry)
-
+    delete.border = True
+    
     if bin:
         form = ToolForm(formdata=request.form, obj=bin)
         if request.method == 'POST' and form.validate():
