@@ -1,0 +1,15 @@
+<doctype html>
+<title>Delete Tool Listing - Flask Special Tool Database</title>
+<h2>Delete Tool Listing</h2>
+
+{% from "_formhelpers.html" import render_field %}
+<form method=post>
+  <dl>
+    {{ table }}
+  </dl>
+  <p><input type=submit value=Delete>
+</form>
+<p>
+<form action="{{ url_for('.index') }}">
+    <input type="submit" value="Cancel" />
+</form>
