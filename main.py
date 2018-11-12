@@ -133,4 +133,4 @@ def save_changes(bin, form, new=False):
     db_session.commit()
     
 if __name__ == '__main__':
-    app.run()
+    app.run(host= '0.0.0.0')
