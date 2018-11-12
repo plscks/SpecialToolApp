@@ -14,13 +14,13 @@ def delete(id):
     """
     Delete the item in the database
     """
-    qry = db_session.query(Album).filter(
+    qry = db_session.query(Bin).filter(
         Bin.id==id)
     bin = qry.first()
     delete = Results(qry)
 
     if bin:
-        form = AlbumForm(formdata=request.form, obj=bin)
+        form = ToolForm(formdata=request.form, obj=bin)
         if request.method == 'POST' and form.validate():
             # delete the item from the databse
             db_session.delete(bin)
@@ -119,7 +119,7 @@ def save_changes(bin, form, new=False):
     # Get data from form and assign it to the correct attributes
     # of the SQLAlchemy table object
     tool = Tool()
-    tool.name = form.toolnumber.data
+    tool.name = form.partnumber.data
 
     bin.partnumber = tool
     bin.location = form.location.data

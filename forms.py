@@ -8,5 +8,5 @@ class ToolSearchForm(Form):
     search = StringField('')
 
 class ToolForm(Form):
-    toolnumber = StringField('Tool Number:')
+    partnumber = StringField('Tool Number:')
     location = StringField('Location:')
