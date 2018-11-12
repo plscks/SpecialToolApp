@@ -5,7 +5,7 @@ from db_setup import init_db, db_session
 from forms import ToolSearchForm, ToolForm
 from flask import flash, render_template, request, redirect
 from models import Tool, Bin
-from tables import Results
+from tables import Results, Delete
 
 init_db()
 
@@ -17,7 +17,7 @@ def delete(id):
     qry = db_session.query(Bin).filter(
         Bin.id==id)
     bin = qry.first()
-    delete = Results(qry)
+    delete = Delete(qry)
 
     if bin:
         form = ToolForm(formdata=request.form, obj=bin)
